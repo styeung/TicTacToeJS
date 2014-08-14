@@ -4,12 +4,6 @@ function Board () {
   this.grid = Board.makeGrid();
 }
 
-Board.isValidPos = function (pos) {
-  return (
-    (0 <= pos[0]) && (pos[0] < 3) && (0 <= pos[1]) && (pos[1] < 3)
-  );
-};
-
 Board.makeGrid = function () {
   var grid = [];
 
@@ -26,10 +20,6 @@ Board.makeGrid = function () {
 Board.marks = ["x", "o"];
 
 Board.prototype.isEmptyPos = function (pos) {
-  if (!Board.isValidPos(pos)) {
-    // throw new MoveError("Is not valid position!");
-  }
-
   return (this.grid[pos[0]][pos[1]] === null);
 };
 
@@ -51,7 +41,7 @@ Board.prototype.isOver = function () {
 
 Board.prototype.placeMark = function (pos, mark) {
   if (!this.isEmptyPos(pos)) {
-    // throw new MoveError("Is not an empty position!");
+    
   }
 
   this.grid[pos[0]][pos[1]] = mark;
@@ -118,5 +108,3 @@ Board.prototype.winnerHelper = function (posSeq) {
 
   return null;
 };
-
-module.exports = Board;

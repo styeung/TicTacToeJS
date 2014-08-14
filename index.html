@@ -3,9 +3,11 @@
   <head>
     <script src="./board.js"></script>
     <script src="./game.js"></script>
-    <script src="./index.js"></script>
+    <script src="./ttt_ui.js"></script>
+    <script src="./jquery-1.11.1.js"></script>
 
     <style>
+
       html, head, body, ul, li {
         margin: 0;
         padding: 0;
@@ -20,6 +22,29 @@
         display: block;
       }
 
+      h2 {
+        font-family: sans-serif;
+        margin: 100 auto;
+        text-align: center;
+        display: block;
+      }
+
+      h2.x:after {
+        content: "x's turn";
+      }
+
+      h2.o:after {
+        content: "o's turn";
+      }
+
+      h3 {
+        font-family: sans-serif;
+        margin: 100 auto;
+        text-align: center;
+        color: red;
+        display: block;
+      }
+
       .group:after {
         content: "";
         display: block;
@@ -31,15 +56,27 @@
         display: block;
         border: 5px solid black;
         width: 300px;
-        margin: 100px auto;
+        margin: auto;
       }
 
       li {
+        font-family: sans-serif;
         display: block;
         float: left;
         width: 90px;
         height: 90px;
         border: 5px solid black;
+        text-align: center;
+        font-size: 90px;
+      }
+
+      li.x:after {
+        content: "X";
+
+      }
+
+      li.o:after {
+        content: "O";
       }
 
     </style>
@@ -49,19 +86,31 @@
 
     <h1>Tic-Tac-Toe</h1>
 
+    <h2 class="x"></h2>
+    <h3 class="errors"></h3>
+
     <ul class="group">
-      <li></li>
-      <li></li>
-      <li></li>
+      <li id="1"></li>
+      <li id="2"></li>
+      <li id="3"></li>
 
-      <li></li>
-      <li></li>
-      <li></li>
+      <li id="4"></li>
+      <li id="5"></li>
+      <li id="6"></li>
 
-      <li></li>
-      <li></li>
-      <li></li>
+      <li id="7"></li>
+      <li id="8"></li>
+      <li id="9"></li>
     </ul>
+    <script>
+      $(document).ready(function(){
+        var game = new Game();
 
+        $('ul').on("click", "li", function(event) {
+          TTTUI(event.currentTarget, game);
+        });
+
+      });
+    </script>
   </body>
 </html>
